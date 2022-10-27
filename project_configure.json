@@ -1,0 +1,16 @@
+{
+ "build": "",
+ "entry_point": "ReportCheck/main.py",
+ "executable": "python3 -m ReportCheck.main",
+ "input_file": "",
+ "template_root": "",
+ "server_targets": [
+  {
+   "user": "",
+   "host": "",
+   "port": 22,
+   "path": ""
+  }
+ ],
+ "enable_complete": true
+}
