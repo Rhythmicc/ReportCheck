@@ -10,6 +10,8 @@ pip3 install https://github.com/Rhythmicc/ReportCheck.git -U
 
 ```shell
 cup-rc --help
+
+cup-rc [--press] remote_url username password email email_password email_smtp to1 to2 ...
 ```
 
 ## Developer

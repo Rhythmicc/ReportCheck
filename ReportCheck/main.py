@@ -51,12 +51,6 @@ def _check(
     to: list = [],
     press: bool = False,
 ):
-    """
-    检查今日未上报情况
-    Check today's unreported situation
-
-    :param press: 是否催报
-    """
     global driver
 
     import time
@@ -169,7 +163,14 @@ def check(
     检查今日未上报情况
     Check today's unreported situation
 
-    :param press: 是否催报
+    :param remote_url: 远程浏览器地址 Remote browser address
+    :param username: 学号/工号 Username
+    :param password: 密码 Password
+    :param fr: 发件人邮箱 From email
+    :param email_password: 发件人邮箱密码 From email password
+    :param smtp: SMTP 服务器 SMTP server
+    :param to: 收件人邮箱列表 To email list
+    :param press: 是否催报 Whether to press
     """
     try:
         _check(remote_url, username, password, fr, email_password, smtp, to, press)
