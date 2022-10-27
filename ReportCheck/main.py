@@ -11,7 +11,7 @@ def email(
     fr: str = "",
     password: str = "",
     smtp: str = "",
-    to: str = "",
+    to: list = [],
     status: str = None,
     success: bool = True,
 ):
@@ -23,7 +23,7 @@ def email(
             password,
             smtp,
             "CUP填报检查",
-        ).send([to], "【学生每日填报】发生错误", f"{status}")
+        ).send(to, "【学生每日填报】发生错误", f"{status}")
     current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     if not status:
         requirePackage(".RawSender", "Sender")(
@@ -31,14 +31,14 @@ def email(
             password,
             smtp,
             "CUP填报检查",
-        ).send([to], "【学生每日填报】全部已上报", f"时间: {current_time}")
+        ).send(to, "【学生每日填报】全部已上报", f"时间: {current_time}")
     else:
         requirePackage(".RawSender", "Sender")(
             _email,
             password,
             smtp,
             "CUP填报检查",
-        ).send([to], "【学生每日填报】存在未上报", f"名单: {status}")
+        ).send(to, "【学生每日填报】存在未上报", f"名单: {status}")
 
 
 def _check(
@@ -48,7 +48,7 @@ def _check(
     fr: str = "",
     email_password: str = "",
     smtp: str = "",
-    to: str = "",
+    to: list = [],
     press: bool = False,
 ):
     """
@@ -179,7 +179,7 @@ def check(
         QproDefaultConsole.print_exception()
         QproDefaultConsole.save_html("log.html")
         with open("log.html", "r", encoding="utf-8") as f:
-            email(fr, email_password, smtp, to, f.read(), False)
+            email(fr, email_password, smtp, to.split(","), f.read(), False)
 
 
 def main():
