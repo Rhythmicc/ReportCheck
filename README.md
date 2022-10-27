@@ -26,4 +26,3 @@ cup-rc [--press] remote_url username password fr email_password smtp to1 to2 ...
 | smtp           | 字符串 | SMTP 服务器 SMTP server               |
 | to             | 列表   | 收件人邮箱列表 To email list          |
 | press          | 布尔   | 是否催报 Whether to press             |
-
