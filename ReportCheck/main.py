@@ -134,7 +134,7 @@ def _check(
             name_lists.append(tds[1].text)
             if press:
                 tds[-1].find_elements(By.TAG_NAME, "p")[-1].click()  # 催报
-                time.sleep(2)
+                time.sleep(2)  # 等待加载
 
         btn = driver.find_element(By.CLASS_NAME, "btn-next")
         if not btn.get_property("disabled"):
