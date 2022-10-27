@@ -1,0 +1,39 @@
+#compdef ReportCheck
+
+local cur prev
+cur=${words[CURRENT]}
+prev=${words[CURRENT-1]}
+
+(( $+functions[_ReportCheck_args_comp] )) || 
+_ReportCheck_args_comp() {
+    local -a opt_args
+    if [[ ${prev} == check ]]; then
+        opt_args=(
+            -to:'收件人邮箱列表 To email list'
+            --press:'是否催报 Whether to press'
+        )
+else
+    _arguments -S -s '*:filename:_files'
+    return
+fi
+
+    _describe subcommand opt_args
+}
+
+(( $+functions[_ReportCheck_main] )) || 
+_ReportCheck_main() {
+    local -a args
+    args=(
+        --help:'获取帮助'
+        check:'检查今日未上报情况
+    Check today's unreported situation'
+    )
+
+    _describe -t common-commands 'common commands' args && _ret=0
+}
+
+if (( ${#words} >= 3 )); then
+    _ReportCheck_args_comp
+else
+    _ReportCheck_main
+fi
