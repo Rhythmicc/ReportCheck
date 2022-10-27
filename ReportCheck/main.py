@@ -162,7 +162,7 @@ def check(
     fr: str,
     email_password: str,
     smtp: str,
-    to: str,
+    to: list,
     press: bool = False,
 ):
     """
@@ -179,7 +179,7 @@ def check(
         QproDefaultConsole.print_exception()
         QproDefaultConsole.save_html("log.html")
         with open("log.html", "r", encoding="utf-8") as f:
-            email(fr, email_password, smtp, to.split(","), f.read(), False)
+            email(fr, email_password, smtp, to, f.read(), False)
 
 
 def main():

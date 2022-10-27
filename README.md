@@ -9,7 +9,7 @@ pip3 install https://github.com/Rhythmicc/ReportCheck.git -U
 ## Usage
 
 ```shell
-ReportCheck --help
+cup-rc --help
 ```
 
 ## Developer
