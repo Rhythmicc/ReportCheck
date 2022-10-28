@@ -127,13 +127,16 @@ def _check(
         table = content.find_element(By.TAG_NAME, "table")
         trs = table.find_elements(By.TAG_NAME, "tr")
 
-        for tr in trs:
+        for _id, tr in enumerate(trs):
             tds = tr.find_elements(By.TAG_NAME, "td")
             if len(tds) <= 1:
                 continue
             name_lists.append(tds[1].text)
             if press:
-                tds[-1].find_elements(By.CLASS_NAME, "iconcuiban1")[0].click()  # 催报
+                driver.execute_script(
+                    f'document.getElementsByTagName("tr")[{_id}].getElementsByTagName("td")[7].getElementsByClassName("iconcuiban1")[0].click()'
+                )
+                # tds[-1].find_elements(By.CLASS_NAME, "iconcuiban1")[0].click()  # 催报
                 time.sleep(2)  # 等待加载
 
         btn = driver.find_element(By.CLASS_NAME, "btn-next")
