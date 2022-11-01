@@ -3,7 +3,7 @@ from QuickProject import QproErrorString
 from . import *
 import time
 
-app = Commander()
+app = Commander(name)
 driver = None
 
 
