@@ -11,7 +11,7 @@ pip3 install https://github.com/Rhythmicc/ReportCheck.git -U
 ```shell
 cup-rc --help
 
-cup-rc [--press] remote_url username password fr email_password smtp -to to1 to2 ...
+cup-rc remote_url username password fr email_password smtp -to to1 to2 ...
 ```
 
 ### 参数表
@@ -25,7 +25,6 @@ cup-rc [--press] remote_url username password fr email_password smtp -to to1 to2
 | email_password | 字符串 | 发件人邮箱密码 From email password    |
 | smtp           | 字符串 | SMTP 服务器 SMTP server               |
 | to             | 列表   | 收件人邮箱列表 To email list          |
-| press          | 布尔   | 是否催报 Whether to press             |
 
 ### 样例
 
