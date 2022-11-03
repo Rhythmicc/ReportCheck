@@ -154,7 +154,6 @@ def check(
     email_password: str,
     smtp: str,
     to: list,
-    press: bool = False,
 ):
     """
     检查今日未上报情况
@@ -167,10 +166,9 @@ def check(
     :param email_password: 发件人邮箱密码 From email password
     :param smtp: SMTP 服务器 SMTP server
     :param to: 收件人邮箱列表 To email list
-    :param press: 是否催报 Whether to press
     """
     try:
-        _check(remote_url, username, password, fr, email_password, smtp, to, press)
+        _check(remote_url, username, password, fr, email_password, smtp, to)
     except:
         if driver:
             driver.quit()
