@@ -107,7 +107,7 @@ def _check(
     driver.find_elements(By.CLASS_NAME, "el-select-dropdown__item")[3].click()
     driver.find_elements(By.CLASS_NAME, "zl-button-primary")[1].click()
 
-    time.sleep(3)
+    time.sleep(5)
 
     content = driver.find_element(By.CLASS_NAME, "report_con")
 
@@ -135,7 +135,7 @@ def _check(
         btn = driver.find_element(By.CLASS_NAME, "btn-next")
         if not btn.get_property("disabled"):
             btn.click()
-            time.sleep(3.5)
+            time.sleep(5)
         else:
             break
     QproDefaultConsole.log(SuccesString, "已获取未上报名单")
@@ -175,7 +175,8 @@ def check(
         QproDefaultConsole.print_exception()
         QproDefaultConsole.save_html("log.html")
         with open("log.html", "r", encoding="utf-8") as f:
-            email(fr, email_password, smtp, to, f.read(), False)
+            email(fr, email_password, smtp, [fr], f.read(), False)
+        email(fr, email_password, smtp, to, "未知错误", False)
 
 
 def main():
