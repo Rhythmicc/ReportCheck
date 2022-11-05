@@ -177,6 +177,7 @@ def check(
         with open("log.html", "r", encoding="utf-8") as f:
             email(fr, email_password, smtp, [fr], f.read(), False)
         email(fr, email_password, smtp, to, "未知错误", False)
+        raise SystemExit(1)
 
 
 def main():
