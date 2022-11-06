@@ -154,6 +154,7 @@ def check(
     email_password: str,
     smtp: str,
     to: list,
+    name: str = "",
 ):
     """
     检查今日未上报情况
@@ -166,12 +167,16 @@ def check(
     :param email_password: 发件人邮箱密码 From email password
     :param smtp: SMTP 服务器 SMTP server
     :param to: 收件人邮箱列表 To email list
+    :param name: 姓名 Name
     """
     try:
         _check(remote_url, username, password, fr, email_password, smtp, to)
     except:
         if driver:
             driver.quit()
+        QproDefaultConsole.print(
+            QproErrorString, f"出现错误: {username}{f': {name}' if name else ''}"
+        )
         QproDefaultConsole.print_exception()
         QproDefaultConsole.save_html("log.html")
         with open("log.html", "r", encoding="utf-8") as f:
