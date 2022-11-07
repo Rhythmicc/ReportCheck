@@ -87,7 +87,7 @@ def _check(
     QproDefaultConsole.log(SuccesString, "已登录")
     QproDefaultConsole.log(QproInfoString, "正在查找上报信息...")
 
-    time.sleep(10)
+    time.sleep(15)
 
     driver.switch_to.default_content()
 
