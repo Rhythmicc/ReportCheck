@@ -11,6 +11,8 @@ if enable_config:
 import sys
 from QuickProject import user_pip, _ask, external_exec, QproErrorString
 
+driver = None
+
 
 def requirePackage(
     pname: str,
@@ -66,3 +68,29 @@ def requirePackage(
             exit(-1)
     finally:
         return eval(f"{module if module else pname}")
+
+
+def driver_create(remote_url: str = None):
+    global driver
+
+    from selenium import webdriver
+
+    if not remote_url:
+        driver = webdriver.Chrome()
+    else:
+        driver = webdriver.Remote(
+            command_executor=remote_url,
+            desired_capabilities=webdriver.DesiredCapabilities.CHROME,
+        )
+    return driver
+
+
+def driver_close(remote_url: str = None):
+    global driver
+
+    if not driver:
+        return
+    if remote_url:
+        driver.close()
+    else:
+        driver.quit()

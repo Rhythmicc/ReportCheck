@@ -4,7 +4,6 @@ from . import *
 import time
 
 app = Commander(name)
-driver = None
 
 
 def email(
@@ -50,10 +49,7 @@ def _check(
     smtp: str = "",
     to: list = [],
 ):
-    global driver
-
     import time
-    from selenium import webdriver
     from selenium.webdriver.common.by import By
 
     SuccesString = "[bold green][成功][/]"
@@ -61,13 +57,7 @@ def _check(
     QproDefaultConsole.record = True
 
     QproDefaultConsole.log(QproInfoString, "正在打开浏览器...")
-    if url := remote_url:
-        driver = webdriver.Remote(
-            command_executor=url,
-            desired_capabilities=webdriver.DesiredCapabilities.CHROME,
-        )
-    else:
-        driver = webdriver.Chrome()
+    driver = driver_create(remote_url)
 
     QproDefaultConsole.log(SuccesString, "浏览器已打开")
     QproDefaultConsole.log(QproInfoString, "正在进入检查页面...")
@@ -139,7 +129,7 @@ def _check(
         else:
             break
     QproDefaultConsole.log(SuccesString, "已获取未上报名单")
-    driver.quit()
+    driver_close(remote_url)
     QproDefaultConsole.log(QproInfoString, "正在发送邮件...")
     email(fr, email_password, smtp, to, "、".join(name_lists))
     QproDefaultConsole.log(SuccesString, "已发送邮件")
@@ -172,8 +162,7 @@ def check(
     try:
         _check(remote_url, username, password, fr, email_password, smtp, to)
     except:
-        if driver:
-            driver.quit()
+        driver_close(remote_url)
         QproDefaultConsole.print(
             QproErrorString, f"出现错误: {username}{f': {name}' if name else ''}"
         )
